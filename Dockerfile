@@ -32,7 +32,7 @@ RUN \
   mkdir /opt/boa && \
   if [ -z ${BOA_RELEASE+x} ]; then \
     BOA_RELEASE=$(curl -sX GET "https://api.github.com/repos/Realm667/WolfenDoom/releases/latest" \
-    | awk '/tag_name/{print $4;exit}' FS='[""]'); \
+    | jq -r '.tag_name'); \
   fi && \
   curl -o \
     /tmp/boa.tar.gz -L \
